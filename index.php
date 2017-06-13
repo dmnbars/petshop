@@ -48,7 +48,7 @@ $app->get('/api/Table', function ($params, $attributes, $db) {
         $finder = AbstractFinder::getFinder($params['table'], $db);
 
         if (!empty($params['id'])) {
-            $data['payload'] = $finder->findOneById(intval($params['id']));
+            $data['payload'] = [$finder->findOneById(intval($params['id']))];
         } else {
             $data['payload'] = $finder->findAll();
         }
@@ -89,6 +89,11 @@ $app->get('/api/SessionSubscribe', function ($params, $attributes, $db) {
                 throw new BaseExtension('Не указан параметр ' . $param);
             }
         }
+
+        /**
+         * При необходимости $userFinder->findOneByEmail и $sessionFinder->findOneById можно заменить на метод
+         * возвращающий скаляр для ID и метод проверяющий наличие лекции в бд
+         */
 
         $userFinder = new ParticipantFinder($db);
         $user = $userFinder->findOneByEmail($params['userEmail']);
