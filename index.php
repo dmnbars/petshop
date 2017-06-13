@@ -72,7 +72,7 @@ $app->get('/api/Table', function ($params, $attributes, $db) {
     return $response;
 });
 
-$app->get('/api/SessionSubscribe', function ($params, $attributes, $db) {
+$app->post('/api/SessionSubscribe', function ($params, $attributes, $db) {
     /**
      * @var DataBase $db
      */
@@ -133,7 +133,7 @@ $app->get('/api/SessionSubscribe', function ($params, $attributes, $db) {
     return $response;
 });
 
-$app->get('/api/PostNews', function ($params, $attributes, $db) {
+$app->post('/api/PostNews', function ($params, $attributes, $db) {
     /**
      * @var DataBase $db
      */
