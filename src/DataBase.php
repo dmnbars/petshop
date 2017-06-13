@@ -32,4 +32,12 @@ class DataBase
 
         return $stmt->fetchAll();
     }
+
+    public function insert($sql, $values = [])
+    {
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($values);
+
+        return $this->pdo->lastInsertId();
+    }
 }

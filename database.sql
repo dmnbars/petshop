@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS `News` (
   `NewsTitle` varchar(255) NOT NULL,
   `NewsMessage` text NOT NULL,
   `LikesCounter` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `unique_news` (`ParticipantId`,`NewsTitle`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 INSERT INTO `News` (`ID`, `ParticipantId`, `NewsTitle`, `NewsMessage`, `LikesCounter`) VALUES
