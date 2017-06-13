@@ -3,13 +3,13 @@
 
 namespace App\Finder;
 
-class NewsFinder extends AbstractFinder
+class SessionFinder extends AbstractFinder
 {
     /**
      * {@inheritdoc}
      */
     public function getTableName()
     {
-        return 'News';
+        return 'Session';
     }
 }

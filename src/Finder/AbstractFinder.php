@@ -26,4 +26,24 @@ abstract class AbstractFinder implements FinderInterface
 
         throw new BaseExtension('Таблица не существует');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findById($id)
+    {
+        $sql = "SELECT * FROM {$this->getTableName()} WHERE ID = ?";
+
+        return $this->db->select($sql, [$id]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findAll()
+    {
+        $sql = "SELECT * FROM {$this->getTableName()}";
+
+        return $this->db->select($sql);
+    }
 }
