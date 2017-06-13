@@ -17,6 +17,14 @@ abstract class AbstractFinder implements FinderInterface
         $this->db = $db;
     }
 
+    /**
+     * @param $type
+     * @param DataBase $db
+     *
+     * @return self
+     *
+     * @throws BaseExtension
+     */
     public static function getFinder($type, DataBase $db)
     {
         $className = __NAMESPACE__ . '\\' . ucfirst($type) . 'Finder';
@@ -30,11 +38,17 @@ abstract class AbstractFinder implements FinderInterface
     /**
      * {@inheritdoc}
      */
-    public function findById($id)
+    public function findOneById($id)
     {
-        $sql = "SELECT * FROM {$this->getTableName()} WHERE ID = ?";
+        $sql = "SELECT * FROM `{$this->getTableName()}` WHERE `ID` = ? LIMIT 1";
 
-        return $this->db->select($sql, [$id]);
+        $data = $this->db->select($sql, [$id]);
+
+        if (!isset($data[0])) {
+            return [];
+        }
+
+        return $data[0];
     }
 
     /**
@@ -42,7 +56,7 @@ abstract class AbstractFinder implements FinderInterface
      */
     public function findAll()
     {
-        $sql = "SELECT * FROM {$this->getTableName()}";
+        $sql = "SELECT * FROM `{$this->getTableName()}`";
 
         return $this->db->select($sql);
     }

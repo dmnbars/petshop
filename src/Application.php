@@ -50,14 +50,8 @@ class Application
                     return !is_numeric($key);
                 }, ARRAY_FILTER_USE_KEY);
 
-                $meta = [
-                    'method' => $method,
-                    'uri' => $uri,
-                    'headers' => getallheaders()
-                ];
-
                 /** @var Response $response */
-                $response = $handler($meta, array_merge($_GET, $_POST), $attributes, $_COOKIE, $db);
+                $response = $handler(array_merge($_GET, $_POST), $attributes, $db);
                 http_response_code($response->getStatusCode());
                 foreach ($response->getHeaderLines() as $header) {
                     header($header);

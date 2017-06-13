@@ -18,7 +18,7 @@ interface FinderInterface
      *
      * @return array
      */
-    public function findById($id);
+    public function findOneById($id);
 
     /**
      * @return array

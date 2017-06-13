@@ -37,7 +37,5 @@ class DataBase
     {
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($values);
-
-        return $this->pdo->lastInsertId();
     }
 }
