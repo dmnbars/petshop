@@ -44,6 +44,10 @@ class SessionSubscribeHandler implements HandlerInterface
             ]
         );
 
+        /**
+         * Так как $this->db->getDb()->lastInsertId() возвращает 0, после успешной и не успешной вставки данных с
+         * состовным primary, пришлось делать еще 1 запрос
+         */
         $res = $this->db->select(
             'SELECT `SessionId` FROM `SessionHasParticipant` WHERE `SessionId` = ? AND `ParticipantId` = ? LIMIT 1',
             [
